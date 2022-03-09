@@ -23,7 +23,7 @@ In this architecture, there are a total of 6 microservices. The idea behind this
 
 #### Deploying microservices
 
-To deploy Kafka Cluster, follow the steps in /modules/00-kafka-service/kafka-on-kubernetes.txt file which will first deploy a Strimzi Operator in Kafka namespace on Kubernetes. Once the Operator is running, apply the kafka-cluster.yaml manifest to launch Kafka Cluster on Kubernetes.
+To deploy Kafka Cluster, follow the steps in `/modules/00-kafka-service/kafka-on-kubernetes.txt` file which will first deploy a Strimzi Operator in Kafka namespace on Kubernetes and launch Kafka Cluster and create a Kafka Topic.
 
 The rest of the services can be deployed as -
 
