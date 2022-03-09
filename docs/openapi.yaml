@@ -1,0 +1,187 @@
+---
+openapi: 3.0.0
+info:
+  title: Udaconnect
+  description: Manage persons and their connections
+  version: 1.0.0
+paths:
+  /api/persons:
+    get:
+      summary: Get all persons from database
+      description: Get all persons from database
+      operationId: retrieveAllPersons
+      responses:
+        "200":
+          description: Successfully retrieved all persons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad input parameter
+    post:
+      summary: Create a new person record
+      description: Create a new person record in the database
+      operationId: createPerson
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonId'
+        required: true
+      responses:
+        "200":
+          description: Created new person
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad input parameter
+  /api/persons/{personId}/connection:
+    get:
+      summary: Get person information by Id
+      description: Get person information by id
+      operationId: getPersonById
+      parameters:
+      - name: personId
+        in: path
+        description: ID of the person to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        "400":
+          description: bad input parameter
+  /api/locations/{location_id}:
+    get:
+      summary: Get location from database
+      description: Get location from database
+      operationId: getLocationById
+      responses:
+        "200":
+          description: Successfully retrieve record using location-id
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Location'
+        "400":
+          description: bad input parameter
+  /api/locations:
+    post:
+      summary: Create a new location record
+      description: Create a new location record for a person in the database
+      operationId: createLocation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "200":
+          description: Created new location
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/StatusOK'
+        "400":
+          description: bad input parameter
+components:
+  schemas:
+    Person:
+      required:
+      - company_name
+      - first_name
+      - id
+      - last_name
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        first_name:
+          type: string
+          example: Taco
+        last_name:
+          type: string
+          example: Fargo
+        company_name:
+          type: string
+          example: Alpha Omega Upholstery
+    PersonId:
+      required:
+      - company_name
+      - first_name
+      - last_name
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Taco
+        last_name:
+          type: string
+          example: Fargo
+        company_name:
+          type: string
+          example: Alpha Omega Upholstery
+    Location:
+      required:
+      - person_id
+      - latitude
+      - longitude
+      type: object
+      properties:
+        person_id:
+          type: integer
+          example: 1
+        latitude:
+          type: string
+          example: 38.9
+        longitude:
+          type: string
+          example: -35.4
+    LocationId:
+      required:
+      - id
+      - person_id
+      - latitude
+      - longitude
+      - creation_time
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        person_id:
+          type: integer
+          example: 1
+        latitude:
+          type: string
+          example: 38.9
+        longitude:
+          type: string
+          example: -35.4
+        creation_time:
+          type: string
+          example: 2022-03-08T18:07:51.520050
+    StatusOK:
+      type: object

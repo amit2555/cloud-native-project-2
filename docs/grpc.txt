@@ -1,0 +1,3 @@
+In this architecture, the PersonService has a gRPC server that is served internally as "person-service-grpc" service on port 5005.
+
+The ConnectionService calls the gRPC server to retrieve all persons in the database. This can be seen in modules/03-connection-service/app/udaconnect/services.py.

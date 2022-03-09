@@ -1,0 +1,17 @@
+To run Kafka on Kubernetes, I used Strimzi - https://strimzi.io/
+
+To install Strimzi Operator in Kubernetes - 
+
+1. Create a new Kubernetes namespace (kafka) for the Strimzi Operator.
+	kubectl create namespace kafka
+
+2. Get latest Strimzi and install Strimzi Operator in Kafka namespace -
+	curl -L http://strimzi.io/install/latest \
+	| sed 's/namespace: .*/namespace: kafka/' \
+	| kubectl apply -f - -n kafka
+
+3. Deploy Kafka Cluster using the manifest file kafka-cluster.yaml.
+	kubectl apply -f kafka-cluster.yaml
+
+4. Create Topic using the manifest file kafka-topic.yaml.
+	kubectl apply -f kafka-topic.yaml
