@@ -27,8 +27,8 @@ jobs:
     - name: Build image and push PersonService to Dockerhub
       uses: docker/build-push-action@v2
       with:
-        context: . 
-        file: ./modules/01-person-service/Dockerfile
+        context: ./modules/01-person-service/ 
+        file: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: amit2555/udaconnect-person:latest
@@ -36,8 +36,8 @@ jobs:
     - name: Build image and push LocationProcessService to Dockerhub
       uses: docker/build-push-action@v2
       with:
-        context: . 
-        file: ./modules/02a-location-process-service/Dockerfile
+        context: ./modules/02a-location-process-service/ 
+        file: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: amit2555/udaconnect-location-process:latest
@@ -45,8 +45,8 @@ jobs:
     - name: Build image and push LocationConsumeService to Dockerhub
       uses: docker/build-push-action@v2
       with:
-        context: . 
-        file: ./modules/02b-location-consume-service/Dockerfile
+        context: ./modules/02b-location-consume-service/ 
+        file: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: amit2555/udaconnect-location-consume:latest
@@ -54,8 +54,8 @@ jobs:
     - name: Build image and push ConnectionService to Dockerhub
       uses: docker/build-push-action@v2
       with:
-        context: . 
-        file: ./modules/03-connection-service/Dockerfile
+        context: ./modules/03-connection-service/
+        file: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: amit2555/udaconnect-connection:latest
@@ -63,8 +63,8 @@ jobs:
     - name: Build image and push FrontendService to Dockerhub
       uses: docker/build-push-action@v2
       with:
-        context: . 
-        file: ./modules/04-frontend/Dockerfile
+        context: ./modules/04-frontend/
+        file: ./Dockerfile
         platforms: linux/amd64
         push: true
         tags: amit2555/udaconnect-frontend:latest
